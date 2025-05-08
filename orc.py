@@ -7,7 +7,7 @@ class StockAssistant(OllamaA2AServer):
     """An AI assistant for stock information that coordinates specialized agents."""
 
     def __init__(self, model="llama3", duckduckgo_endpoint="http://localhost:5003/a2a",
-                 yfinance_endpoint="http://localhost:5004/a2a", ollama_host="http://20.150.213.196:11434"):
+                 yfinance_endpoint="http://localhost:5004/a2a", ollama_host="http://localhost:11434"):
         # Initialize the Ollama-powered agent
         super().__init__(
             model=model,
@@ -107,20 +107,20 @@ class StockAssistant(OllamaA2AServer):
             )
 # Run the assistant
 if __name__ == "__main__":
-    # Check if Ollama is running at the remote address
+    # Check if Ollama is running at the local address
     try:
         import requests
-        response = requests.get("http://20.150.213.196:11434/api/version")
+        response = requests.get("http://localhost:11434/api/version")
         if response.status_code == 200:
-            print("Connected to Ollama server at http://20.150.213.196:11434")
+            print("Connected to Ollama server at http://localhost:11434")
     except:
-        print("Error: Cannot connect to Ollama server at http://20.150.213.196:11434")
+        print("Error: Cannot connect to Ollama server at http://localhost:11434")
         print("Please check if the server is running and accessible.")
         exit(1)
 
     # Create the assistant with default parameters
     assistant = StockAssistant(
-        model="llama3",  # You can change this to any model available in your Ollama
+        model="llama3.3",  # You can change this to any model available in your Ollama
         duckduckgo_endpoint="http://localhost:5003/a2a",
         yfinance_endpoint="http://localhost:5004/a2a"
     )

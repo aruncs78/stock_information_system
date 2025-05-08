@@ -28,12 +28,12 @@ def run_stock_assistant():
     """Run the main Stock Assistant on port 5000"""
     # Ollama check is done in the StockAssistant class
 
-    # Create the assistant with remote Ollama server
+    # Create the assistant with local Ollama server
     assistant = StockAssistant(
-        model="llama3",  # Changed from llama2 to llama3.3
+        model="llama3.3",
         duckduckgo_endpoint="http://localhost:5003/a2a",
         yfinance_endpoint="http://localhost:5004/a2a",
-        ollama_host="http://20.150.213.196:11434"  # Remote Ollama server
+        ollama_host="http://localhost:11434"  # Local Ollama server
     )
 
     run_server(assistant, port=5000)
@@ -56,6 +56,7 @@ if __name__ == "__main__":
     # Start main assistant
     print("Starting Stock Assistant...")
     run_stock_assistant()
+
 
 
 
